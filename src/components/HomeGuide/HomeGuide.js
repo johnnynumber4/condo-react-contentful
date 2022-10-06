@@ -11,21 +11,13 @@ const HomeGuide = () => {
     const { accessText, condoMapImage, channelGuideImage } = homeGuide
 
     return (
-        <section className='home-guide' id='home-guide'>
-            <div className='row'>
-                <div className='column'>
-                    <div dangerouslySetInnerHTML={{ __html: accessText }} />
-                </div>
-                <div className='column'>
-                    <div className='imgWrap'>
-                        <img src={condoMapImage} alt="Condo Map" />
-                    </div>
-                </div>
-                <div className='column'>
-                    <div className='imgWrap'>
-                        <img src={channelGuideImage} alt="Channel Guide" />
-                    </div>
-                </div>
+        <section className='home-guide'>
+            <div dangerouslySetInnerHTML={{ __html: accessText }} />
+            <div>
+                <img src={condoMapImage} alt="Condo Map" />
+            </div>
+            <div>
+                <img src={channelGuideImage} alt="Channel Guide" />
             </div>
         </section>
     )
