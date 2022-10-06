@@ -24,9 +24,11 @@ const Carousel = () => {
         <div className='carousel'>
             <Swiper navigation>
                 {carouselSlides.map((item) => {
-                const { id, slideBg, slideTitle, slideDescription } = item
+                const { id, slideBg, slideTitle, slideDescription, slideLink } = item
                 return (
-                    <SwiperSlide key={id}><CarouselSlide  slideTitle={slideTitle} slideDescription={slideDescription} slideBg={slideBg} /></SwiperSlide>
+                    <SwiperSlide key={id}>
+                        <CarouselSlide slideTitle={slideTitle} slideDescription={slideDescription} slideBg={slideBg} slideLink={slideLink} />
+                    </SwiperSlide>
                 )
             })}</Swiper>
         </div>

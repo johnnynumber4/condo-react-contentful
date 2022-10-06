@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import {client} from './client'
-import { cleanUpAbout, cleanUpCarouselSlides, cleanUpGroceryListings } from './helpers'
+import { cleanUpAbout, cleanUpCarouselSlides, cleanUpGroceryListings, cleanUpHomeGuide } from './helpers'
 
 export const Context = React.createContext()
 
@@ -11,6 +11,8 @@ export const Provider = (props) => {
     const [carouselSlides, setCarouselSlides] = useState([])
     const [isGroceryLoading, setIsGroceryLoading] = useState(false)
     const [groceryListings, setGroceryListings] = useState([])
+    const [homeGuide, setHomeGuide] = useState({})
+    const [isHomeGuideLoading, setIsHomeGuideLoading] = useState(false)
 
     const saveGroceryListings = useCallback((rawData) => {
         const cleanGroceryListings = cleanUpGroceryListings(rawData)
@@ -89,13 +91,40 @@ export const Provider = (props) => {
         getCarouselSlides()
     }, [getCarouselSlides])
 
+    const saveHomeGuideData = useCallback((rawData) => {
+        const cleanHomeGuideData = cleanUpHomeGuide(rawData)
+        setHomeGuide(cleanHomeGuideData)
+    }, [])
+    
+    const getHomeGuide = useCallback(async () => {
+        setIsAboutLoading(true)
+        try{
+            const response = await client.getEntry('3w6d2aeJHpQIiJbKwUuma7')
+            if(response){
+                saveHomeGuideData(response)
+            } else {
+                setHomeGuide({})
+            }
+            setIsHomeGuideLoading(false)
+        } catch(error) {
+            console.log(error);
+            setIsHomeGuideLoading(false)
+        }
+    }, [saveHomeGuideData])
+
+    useEffect(() => {
+        getHomeGuide()
+    }, [getHomeGuide])
+
     const contextData = {
         about,
         isAboutLoading,
         isCarouselLoading,
         carouselSlides,
         isGroceryLoading,
-        groceryListings
+        groceryListings,
+        homeGuide,
+        isHomeGuideLoading
     }
 
     return (

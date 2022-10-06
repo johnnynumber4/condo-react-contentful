@@ -15,20 +15,17 @@ const Grocery = () => {
 
     return (
         <div className='grocery-list'>
-            {
-                groceryListings.map((item) => {
-                    const { id, groceryTitle, groceryLocation } = item
-                    console.log(groceryLocation)
-                    return (
-                        <div >
-                            <div>
-                                <h2>{groceryTitle}</h2>
-                                <iframe src={`https://maps.google.com/maps?q=${groceryLocation.lat},${groceryLocation.lon}&hl=es;&output=embed`}></iframe>
-                            </div>
+            {groceryListings.map((item) => {
+                const { id, groceryTitle, groceryLocation } = item
+                return (
+                    <div key={id}>
+                        <div>
+                            <h2>{groceryTitle}</h2>
+                            <iframe title={id} src={`https://maps.google.com/maps?q=${groceryLocation.lat},${groceryLocation.lon}&hl=es;&output=embed`}></iframe>
                         </div>
-                    )
-                })
-            }
+                    </div>
+                )
+            })}
         </div>
     )
 }

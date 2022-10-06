@@ -17,6 +17,16 @@ export const cleanUpAbout = (rawData) => {
     return cleanAbout
 }
 
+export const cleanUpHomeGuide = (rawData) => {
+    const { sys, fields } = rawData;
+    const { id } = sys;
+    const accessText = getHTMLData(fields.access);
+    const channelGuideImage = fields.channelGuide.fields.file.url;
+    const condoMapImage = fields.condoMap.fields.file.url;
+    let cleanHomeGuide = { id, accessText, channelGuideImage, condoMapImage }
+    return cleanHomeGuide
+}
+
 export const cleanUpCarouselSlides = (rawData) => {
     const cleanSlides = rawData.map((slide) => {
         const { sys, fields } = slide;
@@ -24,7 +34,8 @@ export const cleanUpCarouselSlides = (rawData) => {
         const slideTitle = fields.title;
         const slideDescription = getHTMLData(fields.description);
         const slideBg = fields.image.fields.file.url;
-        const updatedSlide = { id, slideTitle, slideDescription, slideBg }
+        const slideLink = fields.linkTitle;
+        const updatedSlide = { id, slideTitle, slideDescription, slideBg, slideLink }
         return updatedSlide;
     })
     return cleanSlides
