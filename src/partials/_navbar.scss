@@ -1,5 +1,7 @@
 .nav {
     background-color: #333;
+    position: sticky;
+    top: 0;
 }
 
 nav ul {
@@ -11,9 +13,10 @@ nav ul {
 }
 
 nav li {
-  a:link, a:visited, a:hover, a:active {
+  a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: white;
+    font-weight:bold;
   }
   list-style: none;
   display: inline-block;
