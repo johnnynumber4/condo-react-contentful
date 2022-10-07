@@ -7,11 +7,7 @@
 // }
 
 // nav li {
-//   a, a:link, a:visited, a:hover, a:active {
-//     text-decoration: none;
-//     color: white;
-//     font-weight:bold;
-//   }
+
 // }
 
 // nav {
@@ -76,15 +72,15 @@
   height: 60px;
   width: 100%;
   padding: 0.5rem 0rem;
-  background-color: #fff;
-  color: black;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
   z-index: 99;
 }
 
 .brand-name {
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 1.3rem;
   margin-left: 1rem;
 }
@@ -101,6 +97,10 @@
 .navigation-menu li {
   list-style-type: none;
   margin: 0 1rem;
+  a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
 }
 
 .navigation-menu ul li a {
@@ -141,8 +141,8 @@
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    background-color: white;
-    border-top: 1px solid black;
+    background-color: rgb(0, 0, 0);
+    border-top: 1px solid rgb(255, 255, 255);
     display: none;
   }
 
@@ -158,7 +158,7 @@
   }
 
   .navigation-menu li:hover {
-    background-color: #eee;
+    background-color: rgb(50, 50, 50);
   }
 
   .navigation-menu.expanded ul {
