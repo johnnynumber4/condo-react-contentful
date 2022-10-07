@@ -1,54 +1,64 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = useState(false)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
-  const toggleNav = () => {
-    setToggleMenu(!toggleMenu)
-  }
-
-  useEffect(() => {
-    const changeWidth = () => {
-      setScreenWidth(window.innerWidth);
-    }
-    window.addEventListener('resize', changeWidth)
-    return () => {
-        window.removeEventListener('resize', changeWidth)
-    }
-  }, [])
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
-    <nav className="nav">
-        <Link to="/" className="site-title items">
-          Paradise 252
-        </Link>
-      {(toggleMenu || screenWidth > 500) && (
-        <ul className="list">
+    <nav className="navigation">
+      <a href="/" className="brand-name">
+        Paradise 252 at Atlantica II
+      </a>
+      <button
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+        }}
+      >
+        {/* icon from Heroicons.com */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          strokeWidth="1.5" 
+          stroke="currentColor" 
+          className="w-6 h-6">
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+
+      </button>
+      <div
+        className={
+          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+        }
+      >
+        <ul>
           <CustomLink to="/home-guide" className="items">Home Guide</CustomLink>
           <CustomLink to="/grocery" className="items">Groceries</CustomLink>
           <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink>
           <CustomLink to="/activities" className="items">Activites</CustomLink>
           <CustomLink to="/about" className="items">About</CustomLink>
         </ul>
-      )}
-      <button onClick={toggleNav} className="btn">Hamburger</button>
+      </div>
     </nav>
-  )
-}
-
-function CustomLink({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to)
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
-
-  return (
-    <li className={isActive ? "active" : ""}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
-  )
+  );
+  
+  function CustomLink({ to, children, ...props }) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+  
+    return (
+      <li className={isActive ? "active" : ""}>
+        <Link to={to} {...props}>
+          {children}
+        </Link>
+      </li>
+    )
+  }
 }
 
 export default Navbar
