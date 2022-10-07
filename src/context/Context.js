@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import {client} from './client'
-import { cleanUpAbout, cleanUpCarouselSlides, cleanUpGroceryListings, cleanUpHomeGuide } from './helpers'
+import { cleanUpAbout, cleanUpCarouselSlides, cleanUpGroceryListings, cleanUpHomeGuide, cleanUpActivitiesListings } from './helpers'
 
 export const Context = React.createContext()
 
@@ -13,6 +13,35 @@ export const Provider = (props) => {
     const [groceryListings, setGroceryListings] = useState([])
     const [homeGuide, setHomeGuide] = useState({})
     const [isHomeGuideLoading, setIsHomeGuideLoading] = useState(false)
+    const [isActivitiesLoading, setIsActivitiesLoading] = useState(false)
+    const [activitiesListings, setActivitiesListings] = useState([])
+
+    const saveActivitiesListings = useCallback((rawData) => {
+        const cleanActivitiesListings = cleanUpActivitiesListings(rawData)
+        setActivitiesListings(cleanActivitiesListings)
+    }, [])
+
+    const getActivitiesListings = useCallback(async () => {
+        setIsActivitiesLoading(true)
+        try {
+            const response = await client.getEntries({ content_type: 'activities' })
+            const responseData = response.items
+            if(responseData){
+                saveActivitiesListings(responseData)
+            } else {
+                setActivitiesListings([])
+            }
+            setIsActivitiesLoading(false)
+        } catch (error) {
+            console.log(error)
+            setIsActivitiesLoading(false)
+        }
+    }, [saveActivitiesListings])
+
+    useEffect(() => {
+        getActivitiesListings()
+    }, [getActivitiesListings])
+
 
     const saveGroceryListings = useCallback((rawData) => {
         const cleanGroceryListings = cleanUpGroceryListings(rawData)
@@ -124,7 +153,9 @@ export const Provider = (props) => {
         isGroceryLoading,
         groceryListings,
         homeGuide,
-        isHomeGuideLoading
+        isHomeGuideLoading,
+        isActivitiesLoading,
+        activitiesListings
     }
 
     return (

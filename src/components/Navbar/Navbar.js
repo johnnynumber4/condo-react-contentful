@@ -1,20 +1,39 @@
-
-
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import React, {useState, useEffect} from 'react'
 
 const Navbar = () => {
+  const [toggleMenu, setToggleMenu] = useState(false)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu)
+  }
+
+  useEffect(() => {
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', changeWidth)
+    return () => {
+        window.removeEventListener('resize', changeWidth)
+    }
+  }, [])
+
   return (
     <nav className="nav">
-      <ul>
-        <li><Link to="/" className="site-title">
+        <Link to="/" className="site-title items">
           Paradise 252
-        </Link></li>
-        <CustomLink to="/home-guide">Home Guide</CustomLink>
-        <CustomLink to="/grocery">Groceries</CustomLink>
-        <CustomLink to="/dining-nightlife">Restaurants &amp; Nightlife</CustomLink>
-        <CustomLink to="/activities">Activites</CustomLink>
-        <CustomLink to="/about">About</CustomLink>
-      </ul>
+        </Link>
+      {(toggleMenu || screenWidth > 500) && (
+        <ul className="list">
+          <CustomLink to="/home-guide" className="items">Home Guide</CustomLink>
+          <CustomLink to="/grocery" className="items">Groceries</CustomLink>
+          <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink>
+          <CustomLink to="/activities" className="items">Activites</CustomLink>
+          <CustomLink to="/about" className="items">About</CustomLink>
+        </ul>
+      )}
+      <button onClick={toggleNav} className="btn">Hamburger</button>
     </nav>
   )
 }

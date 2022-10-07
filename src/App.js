@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import HomeGuide from './components/HomeGuide/HomeGuide';
 import Carousel from './components/Carousel/Carousel';
 import About from './components/About/About';
+import Activities from './components/Activities/Activities';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/grocery" element={<Grocery />} />
           <Route path="/home-guide" element={<HomeGuide />} />
           <Route path="/about" element={<About />} />
+          <Route path="/activities" element={<Activities />} />
         </Routes>
       </div>
     </Provider>
