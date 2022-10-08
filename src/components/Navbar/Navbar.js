@@ -39,7 +39,7 @@ const Navbar = () => {
         <ul>
           <CustomLink to="/home-guide" className="items">Home Guide</CustomLink>
           <CustomLink to="/grocery" className="items">Groceries</CustomLink>
-          <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink>
+          {/* <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink> */}
           <CustomLink to="/activities" className="items">Activites</CustomLink>
           <CustomLink to="/about" className="items">About</CustomLink>
         </ul>

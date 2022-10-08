@@ -14,19 +14,24 @@ const Activities = () => {
     }
 
     return (
-        <div className='activities-list'>
+        <section className='activities-list'>
             {activitiesListings.map((item) => {
-                const { id, activityTitle, activityText } = item
+                const { id, activityTitle, activityText, activityImage } = item
                 return (
-                    <div key={id}>
-                        <div>
+                    <div className='row' key={id}>
+                        <div className='column'>
                             <h2>{activityTitle}</h2>
                             <div dangerouslySetInnerHTML={{ __html: activityText }} />
+                        </div>
+                        <div className='column'>
+                            <div className='imgWrap'>
+                                <img src={activityImage} alt={activityTitle} />
+                            </div>
                         </div>
                     </div>
                 )
             })}
-        </div>
+        </section>
     )
 }
 

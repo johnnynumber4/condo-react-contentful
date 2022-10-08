@@ -9,6 +9,7 @@ const About = () => {
     }
 
     const { aboutTitle, aboutContent, aboutImage } = about
+    console.log(aboutImage)
 
     return (
         <section className='about' id='about'>
