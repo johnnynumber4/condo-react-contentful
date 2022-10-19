@@ -47,7 +47,8 @@ export const cleanUpGroceryListings = (rawData) => {
         const { id } = sys;
         const groceryTitle = fields.title;
         const groceryLocation = fields.location;
-        const updatedGrocery = { id, groceryTitle, groceryLocation }
+        const groceryDesc = fields.description;
+        const updatedGrocery = { id, groceryTitle, groceryLocation, groceryDesc }
         return updatedGrocery;
     })
     return cleanGrocery
