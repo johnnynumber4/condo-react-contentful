@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { useMatch, useResolvedPath } from "react-router-dom"
 import React, { useState } from 'react'
 
 const Navbar = () => {
@@ -37,25 +37,26 @@ const Navbar = () => {
         }
       >
         <ul>
-          <CustomLink to="/home-guide" className="items">Home Guide</CustomLink>
-          <CustomLink to="/grocery" className="items">Groceries</CustomLink>
+          <CustomLink href="/home-guide" className="items">Home Guide</CustomLink>
+          <CustomLink href="/grocery" className="items">Groceries</CustomLink>
           {/* <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink> */}
-          <CustomLink to="/activities" className="items">Activites</CustomLink>
-          <CustomLink to="/about" className="items">About</CustomLink>
+          <CustomLink href="/activities" className="items">Activites</CustomLink>
+          <CustomLink href="/about" className="items">About</CustomLink>
+          <CustomLink href="/suggestions" className="items">Say Hey!</CustomLink>
         </ul>
       </div>
     </nav>
   );
   
-  function CustomLink({ to, children, ...props }) {
-    const resolvedPath = useResolvedPath(to)
+  function CustomLink({ href, children, ...props }) {
+    const resolvedPath = useResolvedPath(href)
     const isActive = useMatch({ path: resolvedPath.pathname, end: true })
   
     return (
       <li className={isActive ? "active" : ""}>
-        <Link to={to} {...props}>
+        <a href={href} {...props}>
           {children}
-        </Link>
+        </a>
       </li>
     )
   }
