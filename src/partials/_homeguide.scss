@@ -1,3 +1,9 @@
 .home-guide {
-
+    overflow-wrap: break-word;
+    position: relative;
+    width: 100%;
+    // display: flex;
+    max-width: 1250px;
+    margin: auto;
+    justify-content: space-between;
 }

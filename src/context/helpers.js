@@ -56,13 +56,6 @@ export const cleanUpGroceryListings = (rawData) => {
 
 export const cleanUpActivitiesListings = (rawData) => {
     const cleanActivities = rawData.map((activityItem) => {
-        // const activityImage = () => {
-        //     if(fields.image.fields.file.url) {
-        //         return 
-        //     } else { 
-        //         return '';
-        //     }
-        // }
         const { sys, fields } = activityItem;
         const { id } = sys;
         const activityTitle = fields.title;
