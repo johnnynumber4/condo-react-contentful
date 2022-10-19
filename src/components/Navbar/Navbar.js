@@ -39,7 +39,6 @@ const Navbar = () => {
         <ul>
           <CustomLink href="/home-guide" className="items">Home Guide</CustomLink>
           <CustomLink href="/grocery" className="items">Groceries</CustomLink>
-          {/* <CustomLink to="/dining-nightlife" className="items">Restaurants &amp; Nightlife</CustomLink> */}
           <CustomLink href="/activities" className="items">Activites</CustomLink>
           <CustomLink href="/about" className="items">About</CustomLink>
           <CustomLink href="/suggestions" className="items">Say Hey!</CustomLink>
