@@ -20,7 +20,6 @@ const Activities = () => {
                 return (
                     <div className='row' key={id}>
                         <div className='column'>
-                            <h2>{activityTitle}</h2>
                             <div dangerouslySetInnerHTML={{ __html: activityText }} />
                         </div>
                         <div className='column'>
