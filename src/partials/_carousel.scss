@@ -30,7 +30,6 @@
     }
 
     @media (max-width: 760px) and (orientation: portrait) {
-        min-height: 80vh;
         padding: 70px 20px;
     }
 }
@@ -38,6 +37,7 @@
 .textWrap {
     max-width: 900px;
     text-align: center;
+    background: rgba(104, 104, 104, 0.4);
 
     h2 {
         font-size: 4.5em;
