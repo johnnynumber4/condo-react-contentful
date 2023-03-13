@@ -8,6 +8,7 @@ import Carousel from './components/Carousel/Carousel';
 import About from './components/About/About';
 import Activities from './components/Activities/Activities';
 import Suggest from './components/Suggest/Suggest';
+import Booking from './components/Booking/Booking';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/suggestions" element={<Suggest />} />
+          <Route path='/booking' element={<Booking />} />
         </Routes>
       </div>
     </Provider>
